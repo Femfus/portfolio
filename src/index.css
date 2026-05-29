@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* ── Custom Fonts ────────────────────────────────────────── */
+@font-face {
+  font-family: 'Awesome';
+  src: url('./font/Awesome.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'StrichpunktSans';
+  src: url('./font/StrichpunktSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* ── Custom Properties ───────────────────────────────────── */
+:root {
+  --font-display: 'Awesome', Georgia, serif;
+  --font-body: 'StrichpunktSans', 'Inter', system-ui, -apple-system, sans-serif;
+  --glass-bg: rgba(0, 0, 0, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-muted: rgba(255, 255, 255, 0.3);
+  --accent: #d4a0c0;
+  --accent-bright: #e8b4d4;
+  --accent-glow: rgba(200, 120, 170, 0.15);
+}
+
+/* ── Reset & Base ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #0a060e;
+  color: var(--text-primary);
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* Hide native cursor on desktop only */
+@media (min-width: 768px) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  body {
+    overflow: auto;
+  }
+}
+
+/* ── Utility Animations ──────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(200, 120, 170, 0); }
+  50%      { box-shadow: 0 0 16px rgba(200, 120, 170, 0.15); }
+}
+
+.animate-fade-slide-up {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease both;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+/* ── Scrollbar (subtle) ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* ── Selection Color ─────────────────────────────────────── */
+::selection {
+  background: rgba(200, 120, 170, 0.35);
+  color: #fff;
+}
